@@ -2,6 +2,7 @@
 session_start();
 $loggedIn = isset($_SESSION['userID']);
 if($loggedIn) {
+	include "../sql-cfg.php";
 	$id = mysqli_real_escape_string($conn, $_SESSION['userID']);
 	$conn = mysqli_connect("localhost", "root", "", "databaseexam");
 	$sql = "SELECT id, imageURL FROM images WHERE owner = $id";
@@ -103,7 +104,7 @@ if($loggedIn) {
 				
 				while($row = $imageresult->fetch_assoc()) {
 					$url = $row["imageURL"];
-					echo "<img class = 'myImage' src='$url'>";
+					echo "<a href='$url'><img class = 'myImage' src='$url'></a>";
 				}
 			} 
 			?>
