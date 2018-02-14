@@ -19,7 +19,6 @@
 		echo "<a href='delete.php?image=$id'>delete</a><br>";
         $url = $row["imageURL"];
         echo "<img src='$url'><br>";
-		
 	}
 	?>
 </body>
