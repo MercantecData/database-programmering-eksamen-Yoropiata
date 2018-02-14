@@ -7,11 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User List</title>
+	<title>Image List</title>
 
 </head>
 <body>
-	<a href="imagelist.php">image list</a>
+	<a href="userlist.php">user list</a>
 	<h1>Images:</h1>
 	<?php 
 	while($row = $result->fetch_assoc()){

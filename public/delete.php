@@ -7,14 +7,15 @@ if(isset($_GET['user'])) {
         echo "failed to delete user.";
         die();
     }
+    header("Location: userlist.php");//redirects back
 }
 if(isset($_GET['image'])) {
     $deleteid = $_GET['image'];
     $sql = "DELETE FROM images WHERE id = $deleteid";
     if(!$conn->query($sql)) {
-        echo "failed to delete user.";
+        echo "failed to delete image.";
         die();
     }
+    header("Location: imagelist.php");//redirects back
 }
-header("Location: userlist.php");//redirects back
 ?>
