@@ -2,10 +2,12 @@
 session_start();
 $loggedIn = isset($_SESSION['userID']);
 if($loggedIn) {
-	$id = $_SESSION['userID'];
+	$id = mysqli_real_escape_string($conn, $_SESSION['userID']);
 	$conn = mysqli_connect("localhost", "root", "", "databaseexam");
 	$sql = "SELECT id, imageURL FROM images WHERE owner = $id";
 	$imageresult = $conn->query($sql);
+} else {
+	$imageresult = false;
 }
 ?>
 <!DOCTYPE html>
@@ -80,7 +82,8 @@ if($loggedIn) {
 			<form method="POST" action="login.php">
 				Brugernavn <input type="text" name="username">
 				Password<input type="password" name="password">
-				<input type="submit" name="submit" value="login">
+				<input type="submit" name="login" value="login">
+				<input type="submit" name="register" value="register">
 			</form>
 			<?php else:?>
 			<form method="POST" action="logout.php">
@@ -94,6 +97,7 @@ if($loggedIn) {
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat quis purus ut bibendum. Mauris sit amet lacinia arcu. Vivamus fringilla magna id augue luctus interdum. 
 
 			<?php
+			
 			if($imageresult) {
 				echo "<h2>Dine Billeder</h2>";
 				
