@@ -6,7 +6,7 @@ if(isset($_POST["submit"])) {
 	$password = $_POST["password"];
 	$sql = "SELECT id FROM adminuser WHERE username = '$username' AND password = '$password'";
 	$result = $conn->query($sql);
-	if($result->num_rows > 0) {
+	if($result->num_rows() > 0) {
 		header("Location: userlist.php");
 		exit;
 	} else {

@@ -2,9 +2,9 @@
 session_start();
 $loggedIn = isset($_SESSION['userID']);
 if($loggedIn) {
-	id = $SESSION['userID'];
+	$id = $_SESSION['userID'];
 	$conn = mysqli_connect("localhost", "root", "", "databaseexam");
-	$sql = SELECT id, imageURL FROM images WHERE owner = id;
+	$sql = "SELECT id, imageURL FROM images WHERE owner = $id";
 	$imageresult = $conn->query($sql);
 }
 ?>
@@ -93,11 +93,12 @@ if($loggedIn) {
 			<h1>Velkommen Til!</h1>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat quis purus ut bibendum. Mauris sit amet lacinia arcu. Vivamus fringilla magna id augue luctus interdum. 
 
-			<?php 
-			if$imageresult) {
+			<?php
+			if($imageresult) {
 				echo "<h2>Dine Billeder</h2>";
+				
 				while($row = $imageresult->fetch_assoc()) {
-					$url = $row["imageUrl"];
+					$url = $row["imageURL"];
 					echo "<img class = 'myImage' src='$url'>";
 				}
 			} 
